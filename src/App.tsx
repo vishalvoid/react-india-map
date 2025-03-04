@@ -28,7 +28,7 @@ const App: React.FC = () => {
   // Custom map styling
   const mapStyle = {
     backgroundColor: "#ffffff",
-    hoverColor: "#b3e0ff",
+    hoverColor: "#dddddd",
     tooltipConfig: {
       backgroundColor: "rgba(0, 0, 0, 0.9)",
       textColor: "#ffffff",
@@ -42,7 +42,7 @@ const App: React.FC = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+      <div style={{ maxWidth: "600px", margin: "0 auto" }}>
         <IndiaMap mapStyle={mapStyle} stateData={sampleStateData} onStateHover={handleStateHover} />
       </div>
       {activeState && (

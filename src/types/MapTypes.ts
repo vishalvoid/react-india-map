@@ -28,7 +28,7 @@ export interface IndiaMapProps {
 }
 
 export const defaultMapStyle: MapStyle = {
-  backgroundColor: "#D6D6D6",
+  backgroundColor: "#ffffff",
   hoverColor: "#A5A5A5",
   stroke: "#000000",
   strokeWidth: 1,

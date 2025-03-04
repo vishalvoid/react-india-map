@@ -81,9 +81,8 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
             zIndex: 1000,
           }}
         >
-          <div>State: {hoverInfo.name}</div>
-          <div>ID: {hoverInfo.id}</div>
-          <div>Title: {hoverInfo.title}</div>
+         
+          <div>State: {hoverInfo.title}</div>
           {getStateData(hoverInfo.id)?.customData && (
             <div className="custom-data">
               {Object.entries(getStateData(hoverInfo.id)!.customData!).map(([key, value]) => (
