@@ -1,54 +1,212 @@
-# React + TypeScript + Vite
+# React India Map Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive SVG India map component for React applications with TypeScript support. This component allows you to create clickable and hoverable state regions with custom data and styling.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install react-india-map
+# or
+yarn add react-india-map
+```
 
-## Expanding the ESLint configuration
+## Usage
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```tsx
+import { IndiaMap } from './components/IndiaMap';
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+const App = () => {
+  const mapStyle = {
+    backgroundColor: "#ffffff",
+    hoverColor: "#dddddd",
+  };
+
+  const stateData = [
+    {
+      id: "IN-MH",
+      customData: {
+        population: "123.2M",
+        capital: "Mumbai",
+      }
+    }
+  ];
+
+  const handleStateHover = (stateId: string, stateInfo?: StateData) => {
+    console.log(`Hovering over ${stateId}`, stateInfo);
+  };
+
+  return (
+    <IndiaMap 
+      mapStyle={mapStyle}
+      stateData={stateData}
+      onStateHover={handleStateHover}
+    />
+  );
+};
+```
+
+## Props
+
+```typescript
+interface MapStyle {
+  backgroundColor?: string;    // Default: "#ffffff"
+  hoverColor?: string;        // Default: "#dddddd"
+}
+
+interface StateData {
+  id: string;                 // State ID (e.g., "IN-MH")
+  customData?: {
+    [key: string]: any;       // Custom state data
+  };
+}
+
+interface IndiaMapProps {
+  mapStyle?: MapStyle;
+  stateData?: StateData[];
+  onStateHover?: (stateId: string, stateInfo?: StateData) => void;
+  onStateClick?: (stateId: string, stateInfo?: StateData) => void;
+}
+```
+
+## State IDs Reference
+
+| State/UT | ID | Capital |
+|----------|-----|---------|
+| Andhra Pradesh | IN-AP | Amaravati |
+| Arunachal Pradesh | IN-AR | Itanagar |
+| Assam | IN-AS | Dispur |
+| Bihar | IN-BR | Patna |
+| Chhattisgarh | IN-CT | Raipur |
+| Goa | IN-GA | Panaji |
+| Gujarat | IN-GJ | Gandhinagar |
+| Haryana | IN-HR | Chandigarh |
+| Himachal Pradesh | IN-HP | Shimla |
+| Jharkhand | IN-JH | Ranchi |
+| Karnataka | IN-KA | Bengaluru |
+| Kerala | IN-KL | Thiruvananthapuram |
+| Madhya Pradesh | IN-MP | Bhopal |
+| Maharashtra | IN-MH | Mumbai |
+| Manipur | IN-MN | Imphal |
+| Meghalaya | IN-ML | Shillong |
+| Mizoram | IN-MZ | Aizawl |
+| Nagaland | IN-NL | Kohima |
+| Odisha | IN-OR | Bhubaneswar |
+| Punjab | IN-PB | Chandigarh |
+| Rajasthan | IN-RJ | Jaipur |
+| Sikkim | IN-SK | Gangtok |
+| Tamil Nadu | IN-TN | Chennai |
+| Telangana | IN-TG | Hyderabad |
+| Tripura | IN-TR | Agartala |
+| Uttar Pradesh | IN-UP | Lucknow |
+| Uttarakhand | IN-UT | Dehradun |
+| West Bengal | IN-WB | Kolkata |
+
+### Union Territories
+| Union Territory | ID | Capital |
+|----------------|-----|---------|
+| Andaman and Nicobar | IN-AN | Port Blair |
+| Chandigarh | IN-CH | Chandigarh |
+| Dadra and Nagar Haveli and Daman and Diu | IN-DN | Daman |
+| Delhi | IN-DL | New Delhi |
+| Jammu and Kashmir | IN-JK | Srinagar/Jammu |
+| Ladakh | IN-LA | Leh |
+| Lakshadweep | IN-LD | Kavaratti |
+| Puducherry | IN-PY | Puducherry |
+
+## Styling
+
+You can customize the map appearance using CSS:
+
+```css
+.india-map-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.india-map-container path {
+  transition: fill 0.3s ease;
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+.india-map-container path:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+```
+
+## Examples
+
+### Basic Usage with Hover Effect
+
+```tsx
+const App = () => {
+  const [activeState, setActiveState] = useState("");
+
+  return (
+    <IndiaMap
+      mapStyle={{
+        backgroundColor: "#f0f0f0",
+        hoverColor: "#b3e0ff"
+      }}
+      onStateHover={(stateId) => setActiveState(stateId)}
+    />
+  );
+};
+```
+
+### With Custom State Data
+
+```tsx
+const App = () => {
+  const stateData = [
+    {
+      id: "IN-MH",
+      customData: {
+        population: "123.2M",
+        capital: "Mumbai",
+        gdp: "$400B"
+      }
     },
-  },
-})
+    {
+      id: "IN-DL",
+      customData: {
+        population: "20.5M",
+        capital: "New Delhi",
+        gdp: "$110B"
+      }
+    }
+  ];
+
+  return (
+    <IndiaMap
+      stateData={stateData}
+      onStateClick={(stateId, data) => {
+        console.log(`Clicked ${stateId}:`, data?.customData);
+      }}
+    />
+  );
+};
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Install dependencies
+npm install
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
 ```
+
+## License
+
+MIT License
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
