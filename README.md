@@ -2,17 +2,19 @@
 
 An interactive SVG India map component for React applications with TypeScript support. This component allows you to create clickable and hoverable state regions with custom data and styling.
 
+
+
+![1.00](chrome-capture-2025-3-4.gif)
+
 ## Installation
 
-```bash
-npm install react-india-map
-# or
-yarn add react-india-map
+```Shell
+npm install @vishalvoid/react-india-map
 ```
 
 ## Usage
 
-```tsx
+```TSX
 import { IndiaMap } from './components/IndiaMap';
 
 const App = () => {
@@ -47,7 +49,7 @@ const App = () => {
 
 ## Props
 
-```typescript
+```TypeScript
 interface MapStyle {
   backgroundColor?: string;    // Default: "#ffffff"
   hoverColor?: string;        // Default: "#dddddd"
@@ -70,54 +72,55 @@ interface IndiaMapProps {
 
 ## State IDs Reference
 
-| State/UT | ID | Capital |
-|----------|-----|---------|
-| Andhra Pradesh | IN-AP | Amaravati |
-| Arunachal Pradesh | IN-AR | Itanagar |
-| Assam | IN-AS | Dispur |
-| Bihar | IN-BR | Patna |
-| Chhattisgarh | IN-CT | Raipur |
-| Goa | IN-GA | Panaji |
-| Gujarat | IN-GJ | Gandhinagar |
-| Haryana | IN-HR | Chandigarh |
-| Himachal Pradesh | IN-HP | Shimla |
-| Jharkhand | IN-JH | Ranchi |
-| Karnataka | IN-KA | Bengaluru |
-| Kerala | IN-KL | Thiruvananthapuram |
-| Madhya Pradesh | IN-MP | Bhopal |
-| Maharashtra | IN-MH | Mumbai |
-| Manipur | IN-MN | Imphal |
-| Meghalaya | IN-ML | Shillong |
-| Mizoram | IN-MZ | Aizawl |
-| Nagaland | IN-NL | Kohima |
-| Odisha | IN-OR | Bhubaneswar |
-| Punjab | IN-PB | Chandigarh |
-| Rajasthan | IN-RJ | Jaipur |
-| Sikkim | IN-SK | Gangtok |
-| Tamil Nadu | IN-TN | Chennai |
-| Telangana | IN-TG | Hyderabad |
-| Tripura | IN-TR | Agartala |
-| Uttar Pradesh | IN-UP | Lucknow |
-| Uttarakhand | IN-UT | Dehradun |
-| West Bengal | IN-WB | Kolkata |
+| State/UT          | ID    | Capital            |
+| ----------------- | ----- | ------------------ |
+| Andhra Pradesh    | IN-AP | Amaravati          |
+| Arunachal Pradesh | IN-AR | Itanagar           |
+| Assam             | IN-AS | Dispur             |
+| Bihar             | IN-BR | Patna              |
+| Chhattisgarh      | IN-CT | Raipur             |
+| Goa               | IN-GA | Panaji             |
+| Gujarat           | IN-GJ | Gandhinagar        |
+| Haryana           | IN-HR | Chandigarh         |
+| Himachal Pradesh  | IN-HP | Shimla             |
+| Jharkhand         | IN-JH | Ranchi             |
+| Karnataka         | IN-KA | Bengaluru          |
+| Kerala            | IN-KL | Thiruvananthapuram |
+| Madhya Pradesh    | IN-MP | Bhopal             |
+| Maharashtra       | IN-MH | Mumbai             |
+| Manipur           | IN-MN | Imphal             |
+| Meghalaya         | IN-ML | Shillong           |
+| Mizoram           | IN-MZ | Aizawl             |
+| Nagaland          | IN-NL | Kohima             |
+| Odisha            | IN-OR | Bhubaneswar        |
+| Punjab            | IN-PB | Chandigarh         |
+| Rajasthan         | IN-RJ | Jaipur             |
+| Sikkim            | IN-SK | Gangtok            |
+| Tamil Nadu        | IN-TN | Chennai            |
+| Telangana         | IN-TG | Hyderabad          |
+| Tripura           | IN-TR | Agartala           |
+| Uttar Pradesh     | IN-UP | Lucknow            |
+| Uttarakhand       | IN-UT | Dehradun           |
+| West Bengal       | IN-WB | Kolkata            |
 
 ### Union Territories
-| Union Territory | ID | Capital |
-|----------------|-----|---------|
-| Andaman and Nicobar | IN-AN | Port Blair |
-| Chandigarh | IN-CH | Chandigarh |
-| Dadra and Nagar Haveli and Daman and Diu | IN-DN | Daman |
-| Delhi | IN-DL | New Delhi |
-| Jammu and Kashmir | IN-JK | Srinagar/Jammu |
-| Ladakh | IN-LA | Leh |
-| Lakshadweep | IN-LD | Kavaratti |
-| Puducherry | IN-PY | Puducherry |
+
+| Union Territory                          | ID    | Capital        |
+| ---------------------------------------- | ----- | -------------- |
+| Andaman and Nicobar                      | IN-AN | Port Blair     |
+| Chandigarh                               | IN-CH | Chandigarh     |
+| Dadra and Nagar Haveli and Daman and Diu | IN-DN | Daman          |
+| Delhi                                    | IN-DL | New Delhi      |
+| Jammu and Kashmir                        | IN-JK | Srinagar/Jammu |
+| Ladakh                                   | IN-LA | Leh            |
+| Lakshadweep                              | IN-LD | Kavaratti      |
+| Puducherry                               | IN-PY | Puducherry     |
 
 ## Styling
 
 You can customize the map appearance using CSS:
 
-```css
+```CSS
 .india-map-container {
   width: 100%;
   max-width: 800px;
@@ -140,7 +143,7 @@ You can customize the map appearance using CSS:
 
 ### Basic Usage with Hover Effect
 
-```tsx
+```TSX
 const App = () => {
   const [activeState, setActiveState] = useState("");
 
@@ -158,7 +161,7 @@ const App = () => {
 
 ### With Custom State Data
 
-```tsx
+```TSX
 const App = () => {
   const stateData = [
     {
@@ -192,7 +195,7 @@ const App = () => {
 
 ## Development
 
-```bash
+```Shell
 # Install dependencies
 npm install
 

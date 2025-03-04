@@ -1,7 +1,7 @@
 {
   "name": "@vishalvoid/react-india-map",
-  "private": true,
-  "version": "1.0.0",
+  "private": false,
+  "version": "1.1.4",
   "description": "Interactive SVG India Map React Component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
