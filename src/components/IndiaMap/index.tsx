@@ -68,17 +68,20 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
             position: "fixed",
             backgroundColor: mapStyle.tooltipConfig?.backgroundColor,
             color: mapStyle.tooltipConfig?.textColor,
-            padding: "5px 10px",
-            borderRadius: "4px",
+            padding: "10px 15px",
+            borderRadius: "8px",
             fontSize: "14px",
             zIndex: 1000,
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+            transition: "opacity 0.2s",
+            opacity: hoverInfo ? 1 : 0,
           }}
         >
-          <div>State: {hoverInfo.name}</div>
+          <div style={{ fontWeight: "bold", marginBottom: "5px" }}>{hoverInfo.name}</div>
           <div>ID: {hoverInfo.id}</div>
           <div>Title: {hoverInfo.title}</div>
           {getStateData(hoverInfo.id)?.customData && (
-            <div className="custom-data">
+            <div className="custom-data" style={{ marginTop: "5px" }}>
               {Object.entries(getStateData(hoverInfo.id)!.customData!).map(([key, value]) => (
                 <div key={key}>{`${key}: ${value}`}</div>
               ))}
