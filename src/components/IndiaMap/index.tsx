@@ -77,9 +77,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
             opacity: hoverInfo ? 1 : 0,
           }}
         >
-          <div style={{ fontWeight: "bold", marginBottom: "5px" }}>{hoverInfo.name}</div>
-          <div>ID: {hoverInfo.id}</div>
-          <div>Title: {hoverInfo.title}</div>
+          <div style={{ fontWeight: "bold", marginBottom: "5px" }}>{hoverInfo.title}</div>
           {getStateData(hoverInfo.id)?.customData && (
             <div className="custom-data" style={{ marginTop: "5px" }}>
               {Object.entries(getStateData(hoverInfo.id)!.customData!).map(([key, value]) => (
