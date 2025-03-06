@@ -1,16 +1,18 @@
 {
   "name": "@vishalvoid/react-india-map",
   "private": false,
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Interactive SVG India Map React Component",
   "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:types": "tsc --emitDeclarationOnly",
+    "prepare": "npm run build && npm run build:types",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "prepare": "npm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
