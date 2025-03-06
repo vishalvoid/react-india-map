@@ -36,6 +36,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     setTooltipPos({ x: e.clientX, y: e.clientY });
 
     if (onStateHover) {
+      // @ts-ignore
       onStateHover(stateName);
     }
   };
@@ -49,6 +50,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
   const handleMouseLeave = () => {
     setHoverInfo(null);
     if (onStateHover) {
+      // @ts-ignore
       onStateHover("");
     }
   };

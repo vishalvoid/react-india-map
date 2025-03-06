@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchSVGContent } from "../utils/mapUtils";
-import { IndiaMapProps, StateData } from "../types/MapTypes";
+import { IndiaMapProps } from "../types/MapTypes";
 
 interface HoverInfo {
   name: string;
@@ -43,6 +43,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     setTooltipPos({ x: e.clientX, y: e.clientY });
 
     if (onStateHover) {
+      // @ts-ignore
       onStateHover(stateName);
     }
   };
@@ -56,6 +57,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
   const handleMouseLeave = () => {
     setHoverInfo(null);
     if (onStateHover) {
+      // @ts-ignore
       onStateHover("");
     }
   };
@@ -81,7 +83,6 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
             zIndex: 1000,
           }}
         >
-         
           <div>State: {hoverInfo.title}</div>
           {getStateData(hoverInfo.id)?.customData && (
             <div className="custom-data">
