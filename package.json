@@ -7,7 +7,7 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp dist/types/src/* dist/types/ && rm -rf dist/types/src",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "npm run build"

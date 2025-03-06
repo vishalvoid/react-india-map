@@ -1,6 +1,6 @@
 export const fetchSVGContent = async (): Promise<string> => {
   try {
-    const response = await fetch("/public/india.svg");
+    const response = await fetch("/india.svg");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }

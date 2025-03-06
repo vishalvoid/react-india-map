@@ -5,7 +5,7 @@ export interface TooltipConfig {
 
 export interface MapStyle {
   backgroundColor: string;
-  hoverColor: string;
+  hoverColor?: string;
   tooltipConfig?: TooltipConfig;
   stroke?: string;
   strokeWidth?: number;
@@ -17,14 +17,14 @@ export interface CustomData {
 
 export interface StateData {
   id: string;
-  customData?: CustomData;
+  [key: string]: any;
 }
 
 export interface IndiaMapProps {
-  mapStyle?: Partial<MapStyle>;
+  mapStyle?: MapStyle;
   stateData?: StateData[];
-  onStateClick?: (stateCode: string, stateName: string, customData?: CustomData) => void;
-  onStateHover?: (stateCode: string, stateName: string, customData?: CustomData) => void;
+  onStateClick?: (stateId: string, stateData?: StateData) => void;
+  onStateHover?: (stateId: string, stateData?: StateData) => void;
 }
 
 export const defaultMapStyle: MapStyle = {
