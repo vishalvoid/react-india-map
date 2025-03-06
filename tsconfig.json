@@ -12,10 +12,9 @@
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
+    "emitDeclarationOnly": true, // Add this to fix declaration generation
     "jsx": "react-jsx",
 
     /* Linting */
