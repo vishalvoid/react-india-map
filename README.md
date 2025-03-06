@@ -2,10 +2,6 @@
 
 An interactive SVG India map component for React applications with TypeScript support. This component allows you to create clickable and hoverable state regions with custom data and styling.
 
-
-
-![1.00](chrome-capture-2025-3-4.gif)
-
 ## Installation
 
 ```Shell
@@ -15,7 +11,7 @@ npm install @vishalvoid/react-india-map
 ## Usage
 
 ```TSX
-import { IndiaMap } from './components/IndiaMap';
+import { IndiaMap } from '@vishalvoid/react-india-map';
 
 const App = () => {
   const mapStyle = {
@@ -38,7 +34,7 @@ const App = () => {
   };
 
   return (
-    <IndiaMap 
+    <IndiaMap
       mapStyle={mapStyle}
       stateData={stateData}
       onStateHover={handleStateHover}
