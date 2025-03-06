@@ -1,7 +1,7 @@
 {
   "name": "@vishalvoid/react-india-map",
   "private": false,
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Interactive SVG India Map React Component",
   "type": "module",
   "main": "./dist/index.js",
@@ -10,6 +10,8 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
+    "clean": "rm -rf dist",
+    "rebuild": "./build.sh",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepare": "npm run build",

@@ -1,11 +1,53 @@
+# Development folders
 node_modules/
-dist/
-.git/
-.gitignore
-.env
-*.log
-.DS_Store
+.vscode/
+.idea/
+coverage/
+test/
+test-dist/
+public/
+scripts/
+
+# Build process
 vite.config.ts
 rollup.config.js
 tsconfig.json
+tsconfig.node.json
+.eslintrc.js
 .eslintrc.json
+.prettierrc
+babel.config.js
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Source maps
+*.map
+
+# Git files
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# Environment files
+.env*
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Scripts
+*.sh
+*.cjs
+get-*.js
+setup-*.js
+fix-*.sh
+full-*.sh
+
+# Test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx

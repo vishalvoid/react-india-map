@@ -2,6 +2,8 @@
 
 An interactive SVG India map component for React applications with TypeScript support. This component allows you to create clickable and hoverable state regions with custom data and styling.
 
+![1.00](chrome-capture-2025-3-4.gif)
+
 ## Installation
 
 ```Shell
@@ -10,27 +12,36 @@ npm install @vishalvoid/react-india-map
 
 ## Usage
 
-```TSX
-import { IndiaMap } from '@vishalvoid/react-india-map';
+```tsx
+import { IndiaMap } from "@vishalvoid/react-india-map";
+import type { StateData } from "@vishalvoid/react-india-map";
 
 const App = () => {
   const mapStyle = {
     backgroundColor: "#ffffff",
     hoverColor: "#dddddd",
+    tooltipConfig: {
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      textColor: "#ffffff",
+    },
   };
 
-  const stateData = [
+  const stateData: StateData[] = [
     {
       id: "IN-MH",
       customData: {
         population: "123.2M",
         capital: "Mumbai",
-      }
-    }
+      },
+    },
   ];
 
   const handleStateHover = (stateId: string, stateInfo?: StateData) => {
     console.log(`Hovering over ${stateId}`, stateInfo);
+  };
+
+  const handleStateClick = (stateId: string, stateInfo?: StateData) => {
+    console.log(`Clicked on ${stateId}`, stateInfo);
   };
 
   return (
@@ -38,6 +49,7 @@ const App = () => {
       mapStyle={mapStyle}
       stateData={stateData}
       onStateHover={handleStateHover}
+      onStateClick={handleStateClick}
     />
   );
 };
@@ -45,16 +57,24 @@ const App = () => {
 
 ## Props
 
-```TypeScript
+```typescript
+interface TooltipConfig {
+  backgroundColor?: string; // Default: "rgba(0, 0, 0, 0.8)"
+  textColor?: string; // Default: "#ffffff"
+}
+
 interface MapStyle {
-  backgroundColor?: string;    // Default: "#ffffff"
-  hoverColor?: string;        // Default: "#dddddd"
+  backgroundColor?: string; // Default: "#ffffff"
+  hoverColor?: string; // Default: "#dddddd"
+  tooltipConfig?: TooltipConfig;
+  stroke?: string; // Default: "#000000"
+  strokeWidth?: number; // Default: 1
 }
 
 interface StateData {
-  id: string;                 // State ID (e.g., "IN-MH")
+  id: string; // State ID (e.g., "IN-MH")
   customData?: {
-    [key: string]: any;       // Custom state data
+    [key: string]: any; // Custom state data
   };
 }
 
@@ -116,7 +136,7 @@ interface IndiaMapProps {
 
 You can customize the map appearance using CSS:
 
-```CSS
+```css
 .india-map-container {
   width: 100%;
   max-width: 800px;
@@ -133,13 +153,20 @@ You can customize the map appearance using CSS:
   cursor: pointer;
   opacity: 0.8;
 }
+
+.state-tooltip {
+  transition: opacity 0.2s;
+}
 ```
 
 ## Examples
 
 ### Basic Usage with Hover Effect
 
-```TSX
+```tsx
+import React, { useState } from "react";
+import { IndiaMap } from "@vishalvoid/react-india-map";
+
 const App = () => {
   const [activeState, setActiveState] = useState("");
 
@@ -147,7 +174,7 @@ const App = () => {
     <IndiaMap
       mapStyle={{
         backgroundColor: "#f0f0f0",
-        hoverColor: "#b3e0ff"
+        hoverColor: "#b3e0ff",
       }}
       onStateHover={(stateId) => setActiveState(stateId)}
     />
@@ -155,43 +182,75 @@ const App = () => {
 };
 ```
 
-### With Custom State Data
+### With Custom State Data and Click Handler
 
-```TSX
+```tsx
+import React from "react";
+import { IndiaMap } from "@vishalvoid/react-india-map";
+import type { StateData } from "@vishalvoid/react-india-map";
+
 const App = () => {
-  const stateData = [
+  const stateData: StateData[] = [
     {
       id: "IN-MH",
       customData: {
         population: "123.2M",
         capital: "Mumbai",
-        gdp: "$400B"
-      }
+        gdp: "$400B",
+      },
     },
     {
       id: "IN-DL",
       customData: {
         population: "20.5M",
         capital: "New Delhi",
-        gdp: "$110B"
-      }
-    }
+        gdp: "$110B",
+      },
+    },
   ];
+
+  const handleStateClick = (stateId: string, data?: StateData) => {
+    console.log(`Clicked ${stateId}:`, data?.customData);
+    // You can show modal, navigate to state page, etc.
+  };
 
   return (
     <IndiaMap
       stateData={stateData}
-      onStateClick={(stateId, data) => {
-        console.log(`Clicked ${stateId}:`, data?.customData);
+      onStateClick={handleStateClick}
+      mapStyle={{
+        backgroundColor: "#f8f9fa",
+        hoverColor: "#acd5f2",
+        stroke: "#ffffff",
+        strokeWidth: 1,
+        tooltipConfig: {
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          textColor: "#ffffff",
+        },
       }}
     />
   );
 };
 ```
 
+## Publishing Updates
+
+To publish a new version to NPM:
+
+```bash
+# Update version in package.json
+npm version patch # or minor or major
+
+# Build the package
+npm run build
+
+# Publish to NPM
+npm publish
+```
+
 ## Development
 
-```Shell
+```bash
 # Install dependencies
 npm install
 
