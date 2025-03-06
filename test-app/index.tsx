@@ -1,12 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import TestComponent from "./TestComponent";
+import App from "./App";
 
-// Create root and render the test component
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    Test Component
-    <TestComponent />
+    <App />
   </React.StrictMode>
 );
