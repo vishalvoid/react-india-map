@@ -1,12 +1,10 @@
-
-
 export interface TooltipConfig {
-  backgroundColor: string;
-  textColor: string;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 export interface MapStyle {
-  backgroundColor: string;
+  backgroundColor?: string;
   hoverColor?: string;
   tooltipConfig?: TooltipConfig;
   stroke?: string;
@@ -20,7 +18,7 @@ export interface CustomData {
 export interface StateData {
   id: string;
   customData?: {
-    [key: string]: string | number;
+    [key: string]: any;
   };
   [key: string]: any;
 }
@@ -28,18 +26,18 @@ export interface StateData {
 export interface IndiaMapProps {
   mapStyle?: MapStyle;
   stateData?: StateData[];
-  onStateClick?: (stateId: string, stateName: string) => void;
-  onStateHover?: (stateName: string) => void;
+  onStateClick?: (stateId: string, stateInfo?: StateData) => void;
+  onStateHover?: (stateId: string, stateInfo?: StateData) => void;
 }
 
 export const defaultMapStyle: MapStyle = {
   backgroundColor: "#ffffff",
-  hoverColor: "#A5A5A5",
+  hoverColor: "#e0e0e0",
   stroke: "#000000",
   strokeWidth: 1,
   tooltipConfig: {
-    backgroundColor: "#ffffff",
-    textColor: "#000000",
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
+    textColor: "#ffffff",
   },
 };
 

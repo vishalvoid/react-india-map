@@ -13,17 +13,25 @@ export default [
         sourcemap: true,
       },
       {
-        file: "dist/index.esm.js",
+        file: "dist/index.mjs",
         format: "esm",
         sourcemap: true,
       },
     ],
-    plugins: [resolve(), commonjs(), typescript()],
+    plugins: [
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: "./tsconfig.json",
+        declaration: true,
+        declarationDir: "dist/types",
+      }),
+    ],
     external: ["react", "react-dom"],
   },
   {
     input: "dist/types/index.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "es" }],
+    output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
   },
 ];

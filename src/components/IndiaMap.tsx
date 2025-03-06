@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { fetchSVGContent } from "../utils/mapUtils";
 import { IndiaMapProps } from "../types/MapTypes";
 
@@ -10,7 +10,7 @@ interface HoverInfo {
 
 export const IndiaMap: React.FC<IndiaMapProps> = ({
   mapStyle = {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000000",
     hoverColor: "#e0e0e0",
     tooltipConfig: {
       backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -23,6 +23,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
   const [svgContent, setSvgContent] = useState<string>("");
   const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const loadSVG = async () => {
@@ -33,6 +34,20 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     };
     loadSVG();
   }, []);
+
+  // Apply background color to all paths when SVG is loaded
+  useEffect(() => {
+    if (svgContent && mapContainerRef.current) {
+      setTimeout(() => {
+        const paths = mapContainerRef.current?.querySelectorAll("path");
+        if (paths) {
+          paths.forEach((path) => {
+            path.setAttribute("fill", mapStyle.backgroundColor || "#000000");
+          });
+        }
+      }, 100);
+    }
+  }, [svgContent, mapStyle.backgroundColor]);
 
   const handleMouseEnter = (e: React.MouseEvent, element: SVGPathElement) => {
     const stateName = element.getAttribute("data-name") || "";
@@ -94,19 +109,19 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
         </div>
       )}
       <div
-        style={{ backgroundColor: mapStyle.backgroundColor }}
+        ref={mapContainerRef}
         dangerouslySetInnerHTML={{ __html: svgContent }}
         onMouseOver={(e) => {
           const path = e.target as SVGPathElement;
           if (path.tagName === "path") {
-            path.style.fill = mapStyle.hoverColor || "#e0e0e0";
+            path.setAttribute("fill", mapStyle.hoverColor || "#e0e0e0");
             handleMouseEnter(e as any, path);
           }
         }}
         onMouseOut={(e) => {
           const path = e.target as SVGPathElement;
           if (path.tagName === "path") {
-            path.style.fill = mapStyle.backgroundColor || "#ffffff";
+            path.setAttribute("fill", mapStyle.backgroundColor || "#000000");
           }
           handleMouseLeave();
         }}

@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   // Custom map styling
   const mapStyle = {
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000000",
     hoverColor: "#dddddd",
     tooltipConfig: {
       backgroundColor: "rgba(0, 0, 0, 0.9)",
