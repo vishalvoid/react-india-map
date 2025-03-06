@@ -6,15 +6,15 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "declaration": true,
-    "declarationDir": "./dist/types",
+    "declarationDir": "dist/types",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "dist",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "emitDeclarationOnly": true, // Add this to fix declaration generation
+    "noEmit": false,
     "jsx": "react-jsx",
 
     /* Linting */
@@ -29,9 +29,10 @@
     "paths": {
       "@/*": ["src/*"]
     },
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
-  "include": ["src"],
+  "include": ["src", "src/types"],
   "references": [{ "path": "./tsconfig.node.json" }],
   "exclude": ["node_modules", "dist"]
 }
