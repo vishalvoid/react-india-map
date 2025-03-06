@@ -1,11 +1,11 @@
 {
   "name": "@vishalvoid/react-india-map",
   "private": false,
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Interactive SVG India Map React Component",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -34,8 +34,16 @@
   "files": [
     "dist",
     "dist/types",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vishalvoid/react-india-map.git"

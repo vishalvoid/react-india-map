@@ -1,2 +1,2 @@
 export { IndiaMap } from "./components/IndiaMap";
-export type { IndiaMapProps, StateData, MapStyle } from "./types";
+export type { IndiaMapProps, StateData, MapStyle, TooltipConfig } from "./types/MapTypes";

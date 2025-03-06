@@ -1,3 +1,5 @@
+
+
 export interface TooltipConfig {
   backgroundColor: string;
   textColor: string;
@@ -17,14 +19,17 @@ export interface CustomData {
 
 export interface StateData {
   id: string;
+  customData?: {
+    [key: string]: string | number;
+  };
   [key: string]: any;
 }
 
 export interface IndiaMapProps {
   mapStyle?: MapStyle;
   stateData?: StateData[];
-  onStateClick?: (stateId: string, stateData?: StateData) => void;
-  onStateHover?: (stateId: string, stateData?: StateData) => void;
+  onStateClick?: (stateId: string, stateName: string) => void;
+  onStateHover?: (stateName: string) => void;
 }
 
 export const defaultMapStyle: MapStyle = {
