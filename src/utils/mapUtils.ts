@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 export const fetchSVGContent = async (): Promise<string> => {
   try {
     const response = await fetch("/public/india.svg");

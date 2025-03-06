@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { IndiaMapProps, StateData } from "../../types/MapTypes";
+import { IndiaMapProps } from "../../types/MapTypes";
 import { fetchSVGContent } from "../../utils/mapUtils";
 
 interface HoverInfo {
@@ -18,7 +18,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
 }) => {
   const [svgContent, setSvgContent] = useState<string>("");
   const [hoverInfo, setHoverInfo] = useState<HoverInfo | null>(null);
-  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [, setTooltipPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const loadSVG = async () => {
@@ -44,7 +44,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     }
   };
 
-  const handleClick = (e: React.MouseEvent, element: SVGPathElement) => {
+  const handleClick = (element: SVGPathElement) => {
     const pathId = element.getAttribute("id") || "";
     if (onStateClick) {
       const stateInfo = stateData.find((state) => state.id === pathId);
@@ -59,7 +59,7 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
     }
   };
 
-  const handleMouseLeave = (element: SVGPathElement) => {
+  const handleMouseLeave = () => {
     setHoverInfo(null);
     if (onStateHover) {
       // @ts-ignore
@@ -82,14 +82,14 @@ export const IndiaMap: React.FC<IndiaMapProps> = ({
         onClick={(e) => {
           const path = e.target as SVGPathElement;
           if (path.tagName === "path") {
-            handleClick(e, path);
+            handleClick(path);
           }
         }}
         onMouseOut={(e) => {
           const path = e.target as SVGPathElement;
           if (path.tagName === "path") {
             path.style.fill = "";
-            handleMouseLeave(path);
+            handleMouseLeave();
           }
         }}
       />
